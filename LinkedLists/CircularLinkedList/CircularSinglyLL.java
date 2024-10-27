@@ -50,7 +50,7 @@ public class CircularSinglyLL {
             System.out.print(first.data+" ");
             first = first.next;
         }
-        System.out.print(first.data);
+        System.out.println(first.data);
     }
 
     public void insertFirst(int data){
@@ -81,10 +81,71 @@ public class CircularSinglyLL {
         length++;   
     }
 
+    public Node deleteFirst() throws Exception {
+        
+        if(isEmpty()){
+
+            throw new Exception("No Elements to delete.");
+
+        }
+
+        Node temp = last.next;
+        if(last.next == last){
+            last = null;
+        }
+        else{
+            last.next = temp.next;
+        }
+        temp.next = null;
+        length--;
+        return temp;
+    }
+
+    public Node delelteLast() throws Exception{
+        if(isEmpty()){
+            throw new Exception("No elements to delete.");
+        }
+        Node first = last.next;
+
+        if(last == last.next){
+            last = null;
+        }
+        else{
+            while(first.next != last){
+                first = first.next;
+            }
+            first.next = last.next;
+            last.next = null;
+            last = first;
+        }
+        length--;
+        return last;
+        
+    }
+
+    public boolean searching(int key){
+        if(isEmpty()){
+            return false;
+        }
+        if(last.data ==  key){
+            return true;
+        }
+        Node first = last.next;
+
+        while(first!=last){
+            if(first.data == key){
+                return true;
+            }
+            first = first.next;
+        }
+        return false;
+    }
 
 
 
-    public static void main(String[] args) {
+
+
+    public static void main(String[] args) throws Exception {
         CircularSinglyLL cl = new CircularSinglyLL();
         //cl.createCircularLL();
         //cl.insertFirst(20);
@@ -98,6 +159,24 @@ public class CircularSinglyLL {
         cl.insertLast(20);
 
         cl.display();
+
+        //cl.deleteFirst();
+        //cl.deleteFirst();
+        //cl.deleteFirst();
+        //cl.deleteFirst();
+        //cl.deleteFirst();
+
+        //cl.delelteLast();
+        //cl.delelteLast();
+        //cl.delelteLast();
+        //cl.delelteLast();
+        //cl.delelteLast();
+        //System.out.println(cl.length());
+
+        System.out.println(cl.searching(25));
+
+
+        //cl.display();
 
         
     }
