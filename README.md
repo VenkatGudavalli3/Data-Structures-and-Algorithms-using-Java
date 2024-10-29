@@ -86,11 +86,6 @@ Feel free to reach out if you have any questions or suggestions!
 - GitHub: [@VenkatGudavalli3]
 - Email: venkatgudavalli379@gmail.com
 
-⚖️ License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-
 Happy Coding! 🎉
 
 Keep calm and code on!
