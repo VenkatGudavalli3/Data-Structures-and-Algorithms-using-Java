@@ -44,7 +44,24 @@ public class Implementation {
         length++;
     }
 
+    public int dequeue() throws Exception{
+        if(isEmpty()){
+            throw new Exception("Queue is Empty!");
+        }
+        int result = front.data;
+        front = front.next;
+
+        if(front == null){
+            rear = null;
+        }
+        length--;
+        return result;
+    }
+
     public void printQueue(){
+        if(isEmpty()){
+            return;
+        }
         ListNode curr = front;
         while(curr!=null){
             System.out.print(curr.data+"->");
@@ -52,14 +69,37 @@ public class Implementation {
         }
         System.out.println("null");
     }
-    public static void main(String[] args) {
+
+    public int first() throws Exception{
+        if(isEmpty()){
+            throw new Exception("Queue is Empty!");
+        }
+        return front.data;
+    }
+
+    public int last() throws Exception{
+        if(isEmpty()){
+            throw new Exception("Queue is Empty!");
+        }
+        return rear.data;
+    }
+    
+    public static void main(String[] args) throws Exception {
 
         Implementation q = new Implementation();
         q.enqueue(10);
         q.enqueue(20);
         q.enqueue(30);
         q.enqueue(40);
+        
+        System.out.println(q.first());
+        System.out.println(q.last());
 
+        //System.out.println(q.dequeue());
+        //System.out.println(q.dequeue());
+        //System.out.println(q.dequeue());
+        //System.out.println(q.dequeue());
+        //System.out.println(q.dequeue());
         System.out.println(q.Length());
         q.printQueue();
         
