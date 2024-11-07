@@ -97,18 +97,74 @@ public class BinaryTreeImplementation {
         }
 
     }
+
+    //post order traversal
+
+    public void postOrder_recursive(TreeNode root){
+        if(root == null){
+            return;
+        }
+        postOrder_recursive(root.left);
+        postOrder_recursive(root.right);
+        System.out.print(root.data+" ");
+    }
+
+    public void postOrder_iterative(){
+
+        if(root==null){
+            return;
+        }
+        Stack<TreeNode> stack = new Stack<>();
+        TreeNode curr = root;
+
+        while(!stack.isEmpty() || curr!=null){
+            if(curr!=null){
+
+                stack.push(curr);
+                curr = curr.left;
+
+            }
+            else{
+                TreeNode temp = stack.peek().right;
+
+                if(temp==null){
+                    temp = stack.pop();
+                    System.out.print(temp.data+" ");
+
+                    while(!stack.isEmpty() && temp == stack.peek().right){
+                        temp = stack.pop();
+                        System.out.print(temp.data+" ");
+                    }
+                }
+                else{
+                    curr = temp;
+                }
+            }
+
+        }
+    }
+
     public static void main(String[] args) {
         BinaryTreeImplementation b = new BinaryTreeImplementation();
 
         b.createBinaryTree();
+
+        System.out.println("PreOrder Traversal: ");
         b.preOrderTraversal_Recursive(b.root);
         System.out.println();
         b.preOrderTraversal_Iterative();
         System.out.println();
 
+        System.out.println("InOrder Traversal: ");
         b.InOrder_Recursive(b.root);
         System.out.println();
         b.InOrder_Iterative();
+        System.out.println();
+
+        System.out.println("PostOrder Traversal: ");
+        b.postOrder_recursive(b.root);
+        System.out.println();
+        b.postOrder_iterative();
         
     }
 }
