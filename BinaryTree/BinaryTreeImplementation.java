@@ -22,12 +22,15 @@ public class BinaryTreeImplementation {
         TreeNode third = new TreeNode(3);
         TreeNode fourth = new TreeNode(4);
         TreeNode fifth = new TreeNode(5);
+        TreeNode sixth = new TreeNode(6);
+
 
         root = first;
         first.left = second;
         first.right = third;
         second.left = fourth;
         second.right = fifth;
+        third.left = sixth;
     }
     // pre order traversal
     public void preOrderTraversal_Recursive(TreeNode root){
@@ -60,13 +63,52 @@ public class BinaryTreeImplementation {
         }
 
     }
+
+    //InOrder Traversal
     
+    public void InOrder_Recursive(TreeNode root){
+        if(root == null){
+            return;
+        }
+        InOrder_Recursive(root.left);
+        System.out.print(root.data+" ");
+        InOrder_Recursive(root.right);
+    }
+
+    public void InOrder_Iterative(){
+        if(root == null){
+            return;
+        }
+
+        Stack<TreeNode> stack = new Stack<>();
+        TreeNode temp = root;
+
+        while(!stack.isEmpty() || temp!=null ){
+            if(temp!=null){
+                stack.push(temp);
+                temp=temp.left;
+            }
+            else{
+                temp = stack.pop();
+                System.out.print(temp.data+" ");
+
+                temp = temp.right;
+            }
+        }
+
+    }
     public static void main(String[] args) {
         BinaryTreeImplementation b = new BinaryTreeImplementation();
 
         b.createBinaryTree();
-        //b.preOrderTraversal_Recursive(b.root);
+        b.preOrderTraversal_Recursive(b.root);
+        System.out.println();
         b.preOrderTraversal_Iterative();
+        System.out.println();
+
+        b.InOrder_Recursive(b.root);
+        System.out.println();
+        b.InOrder_Iterative();
         
     }
 }
