@@ -15,6 +15,7 @@ public class BST_Implemntation {
         }
     }
 
+    // Insertion
     public void insert(int value){
         root = insert(root,value);
     }
@@ -35,6 +36,27 @@ public class BST_Implemntation {
     public void inOrder(){
         inOrder(root);
     }
+
+    // searching
+
+    public TreeNode search(int key){
+        return search(root,key);
+    }
+
+    public TreeNode search(TreeNode root,int key){
+        if(root == null || root.data == key){
+            return root;
+        }
+
+        if(key<root.data){
+            return search(root.left,key);
+        }
+        else{
+            return search(root.right,key);
+        }
+    }
+
+    // printing
     public void inOrder(TreeNode root){
         if(root==null){
             return;
@@ -54,6 +76,13 @@ public class BST_Implemntation {
 
         System.out.println("Binary Search Tree is: ");
         bst.inOrder();
+        System.out.println();
+
+        if(bst.search(7)!=null){
+            System.out.println("Key is found !!!");
+        }else{
+            System.out.println("key is not found!!!");
+        }
     }
     
 }
